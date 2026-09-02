@@ -32,11 +32,11 @@ export default function Hero() {
             <span className="w-16 h-[2px] bg-green-400 shadow-[0_0_12px_#22ff88]" />
             <TypeAnimation
   sequence={[
-    "FULL STACK DEVELOPER",
+    "COMPUTER SCIENCE STUDENT",
     1600,
-    "REACT DEVELOPER",
+    "FULL-STACK DEVELOPER",
     1600,
-    "FRONTEND DESIGNER",
+    "DSA ENTHUSIAST",
     1600,
     "PROBLEM SOLVER",
     1600,
@@ -62,14 +62,14 @@ export default function Hero() {
 
           {/* SUB HEADING */}
           <h2 className="text-2xl md:text-3xl text-white/90 mb-6 font-semibold leading-relaxed">
-            I Build Futuristic
-            <span className="text-green-400"> Web Experiences</span>
+            I build thoughtful
+            <span className="text-green-400"> software experiences.</span>
           </h2>
 
           {/* DESCRIPTION */}
           <p className="text-gray-300 text-lg leading-relaxed max-w-xl">
-            Modern portfolio with immersive 3D motion, cinematic visuals,
-            premium UI and scalable full-stack development experiences.
+            B.Tech Computer Science student building full-stack applications,
+            strengthening DSA skills, and learning in public.
           </p>
 
           {/* BUTTONS */}
@@ -94,7 +94,9 @@ export default function Hero() {
             {[FaGithub, FaLinkedin, FaXTwitter, MdEmail].map((Icon, index) => (
               <a
                 key={index}
-                href="#"
+                href={index === 0 ? "https://github.com/SatyamKushwaha3232" : index === 1 ? "https://www.linkedin.com/in/satyamkushwaha3224/" : index === 3 ? "mailto:sk7555911@gmail.com" : "#contact"}
+                target={index < 2 ? "_blank" : undefined}
+                rel={index < 2 ? "noreferrer" : undefined}
                 className="w-14 h-14 rounded-2xl border border-green-400/30 bg-black/25 backdrop-blur-xl flex items-center justify-center text-green-400 text-2xl hover:bg-green-400 hover:text-black hover:-translate-y-2 hover:shadow-[0_0_30px_#22ff88] transition duration-300"
               >
                 <Icon />

@@ -1,0 +1,3 @@
+import mongoose from "mongoose";
+const projectSchema = new mongoose.Schema({ title: { type: String, required: true, trim: true, maxlength: 100 }, slug: { type: String, required: true, trim: true, lowercase: true, unique: true }, category: { type: String, required: true, trim: true, maxlength: 80 }, description: { type: String, required: true, trim: true, maxlength: 1000 }, technologies: { type: [String], default: [] }, imageUrl: { type: String, default: "" }, githubUrl: { type: String, default: "" }, liveUrl: { type: String, default: "" }, featured: { type: Boolean, default: false }, published: { type: Boolean, default: false }, order: { type: Number, default: 0 } }, { timestamps: true });
+export default mongoose.model("Project", projectSchema);

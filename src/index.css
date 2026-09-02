@@ -10,10 +10,10 @@ html {
 
 body {
   margin: 0;
-  background: #020617;
+  background: #f8fafc;
   overflow-x: hidden;
-  color: white;
-  font-family: Arial, sans-serif;
+  color: #0f172a;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 section {
@@ -29,30 +29,20 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    to bottom,
-    #22ff88,
-    #16a34a,
-    #22ff88
-  );
+  background: #2563eb;
 
   border-radius: 999px;
 
-  box-shadow:
-    0 0 12px #22ff88,
-    0 0 22px #22ff88;
+  box-shadow: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #22ff88;
-
-  box-shadow:
-    0 0 18px #22ff88,
-    0 0 32px #22ff88;
+  background: #1d4ed8;
+  box-shadow: none;
 }
 
 /* =========================
@@ -60,8 +50,8 @@ section {
 ========================= */
 
 ::selection {
-  background: #22ff88;
-  color: black;
+  background: #bfdbfe;
+  color: #0f172a;
 }
 
 /* =========================
@@ -316,4 +306,143 @@ img,
 video,
 canvas {
   max-width: 100%;
+}
+
+/* Warm editorial theme inspired by the supplied reference. */
+#root > div {
+  background: #17130f !important;
+  color: #f6ede4 !important;
+}
+
+#root header {
+  background: rgba(23, 19, 15, 0.92) !important;
+}
+
+#root .bg-\[\#f8fafc\],
+#root .bg-white {
+  background-color: #17130f !important;
+}
+
+#root .bg-slate-900 {
+  background-color: #25150e !important;
+}
+
+#root .bg-slate-100,
+#root .bg-blue-50 {
+  background-color: rgba(255, 140, 55, 0.12) !important;
+}
+
+#root .text-slate-900,
+#root .text-slate-950,
+#root .text-slate-700 {
+  color: #f8eee6 !important;
+}
+
+#root .text-slate-600,
+#root .text-slate-500,
+#root .text-slate-400 {
+  color: #c9b6a7 !important;
+}
+
+#root .text-blue-600,
+#root .text-blue-700,
+#root .text-blue-300 {
+  color: #ff8a3d !important;
+}
+
+#root .bg-blue-600,
+#root .hover\:bg-blue-600:hover,
+#root .hover\:bg-blue-700:hover {
+  background-color: #e85d21 !important;
+}
+
+#root .border-slate-200,
+#root .border-slate-300,
+#root .border-slate-700,
+#root .border-blue-100,
+#root .border-blue-300 {
+  border-color: rgba(255, 196, 153, 0.18) !important;
+}
+
+#root input,
+#root textarea {
+  background: #211811 !important;
+  color: #f8eee6 !important;
+}
+
+#root .focus\:border-blue-600:focus {
+  border-color: #ff8a3d !important;
+}
+
+#root .focus\:ring-blue-100:focus {
+  --tw-ring-color: rgba(255, 138, 61, 0.24) !important;
+}
+
+.portfolio-reel {
+  background:
+    radial-gradient(circle at 78% 15%, rgba(232, 93, 33, 0.18), transparent 24rem),
+    linear-gradient(120deg, #130f0c, #1d120d 55%, #110e0b) !important;
+}
+
+.portfolio-reel main > section {
+  animation: reveal-section 700ms both;
+  animation-timeline: view();
+  animation-range: entry 8% cover 28%;
+}
+
+.portfolio-reel #about,
+.portfolio-reel #experience {
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-reel #about::before,
+.portfolio-reel #experience::before {
+  color: rgba(255, 138, 61, 0.045);
+  font-size: clamp(7rem, 18vw, 19rem);
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  line-height: 0.8;
+  pointer-events: none;
+  position: absolute;
+  right: -0.04em;
+  top: 0.05em;
+  white-space: nowrap;
+  z-index: -1;
+}
+
+.portfolio-reel #about::before { content: "ABOUT"; }
+.portfolio-reel #experience::before { content: "EDUCATION"; }
+
+.portfolio-reel article {
+  border-radius: 2px !important;
+  position: relative;
+}
+
+.portfolio-reel article::before {
+  background: linear-gradient(90deg, #ff8a3d 0 38px, transparent 38px);
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: width 300ms ease;
+  width: 38px;
+}
+
+.portfolio-reel article:hover::before { width: 100%; }
+
+.portfolio-reel aside {
+  border: 1px solid rgba(255, 138, 61, 0.35);
+  box-shadow: 22px 22px 0 rgba(232, 93, 33, 0.12), 0 0 70px rgba(232, 93, 33, 0.18) !important;
+}
+
+@keyframes reveal-section {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-reel main > section { animation: none; }
 }

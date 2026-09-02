@@ -1,30 +1,16 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { fallbackProjects, getProjects } from "../services/api";
 
 export default function Projects() {
-  const projects = [
-    {
-      title: "AI Chat Platform",
-      category: "Full Stack Application",
-      desc: "Modern AI powered chat platform with futuristic UI and real-time interactions.",
-      tech: ["React", "Node.js", "AI"],
-      number: "01",
-    },
-    {
-      title: "3D Portfolio Website",
-      category: "Frontend Development",
-      desc: "Interactive futuristic portfolio with animated background and premium UI.",
-      tech: ["React", "Three.js", "Tailwind"],
-      number: "02",
-    },
-    {
-      title: "E-Commerce Platform",
-      category: "MERN Stack",
-      desc: "Scalable shopping application with responsive design and smooth experience.",
-      tech: ["MongoDB", "Express", "React"],
-      number: "03",
-    },
-  ];
+  const [projects, setProjects] = useState(fallbackProjects);
+  const [isLive, setIsLive] = useState(false);
+  useEffect(() => {
+    getProjects().then((data) => {
+      if (data.length) { setProjects(data); setIsLive(true); }
+    }).catch(() => setIsLive(false));
+  }, []);
 
   return (
     <section
@@ -47,7 +33,7 @@ export default function Projects() {
           className="text-green-400 mb-6 flex items-center gap-5 tracking-[5px]"
         >
           <span className="w-16 h-[2px] bg-green-400 shadow-[0_0_12px_#22ff88]" />
-          PROJECTS
+          {isLive ? "LIVE PROJECTS" : "PROJECTS"}
         </motion.p>
 
         <motion.h2
@@ -78,7 +64,7 @@ export default function Projects() {
 
               {/* NUMBER */}
               <span className="absolute top-5 right-6 text-6xl font-black text-white/5 group-hover:text-green-400/10 transition">
-                {project.number}
+                0{index + 1}
               </span>
 
               {/* TOP VISUAL */}
@@ -108,7 +94,7 @@ export default function Projects() {
                 </h3>
 
                 <p className="text-gray-400 leading-relaxed mb-6">
-                  {project.desc}
+                  {project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-3 mb-8">
@@ -123,17 +109,9 @@ export default function Projects() {
                 </div>
 
                 <div className="flex gap-4">
-                  <button className="flex items-center gap-2 px-5 py-3 rounded-full bg-green-400 text-black font-bold hover:scale-105 hover:-translate-y-1 active:scale-95 hover:shadow-[0_0_30px_#22ff88] transition duration-300">
-                    View <FaArrowRight />
-                  </button>
-
-                  <button className="w-12 h-12 rounded-full border border-green-400/40 text-green-400 flex items-center justify-center hover:bg-green-400 hover:text-black hover:shadow-[0_0_25px_#22ff88] transition">
-                    <FaGithub />
-                  </button>
-
-                  <button className="w-12 h-12 rounded-full border border-green-400/40 text-green-400 flex items-center justify-center hover:bg-green-400 hover:text-black hover:shadow-[0_0_25px_#22ff88] transition">
-                    <FaExternalLinkAlt />
-                  </button>
+                  {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-3 rounded-full bg-green-400 text-black font-bold hover:scale-105 hover:-translate-y-1 active:scale-95 hover:shadow-[0_0_30px_#22ff88] transition duration-300">View <FaArrowRight /></a>}
+                  {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noreferrer" aria-label={`View ${project.title} source`} className="w-12 h-12 rounded-full border border-green-400/40 text-green-400 flex items-center justify-center hover:bg-green-400 hover:text-black hover:shadow-[0_0_25px_#22ff88] transition"><FaGithub /></a>}
+                  {!project.liveUrl && !project.githubUrl && <span className="flex items-center gap-2 text-sm text-gray-500"><FaExternalLinkAlt /> Links coming soon</span>}
                 </div>
               </div>
             </motion.div>

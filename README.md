@@ -1,3 +1,29 @@
+## Run locally
+
+The portfolio now includes a lightweight Node API. It serves project content and stores contact submissions in `server/data/portfolio.json`.
+
+```bash
+npm run api
+```
+
+In another terminal:
+
+```bash
+npm run dev
+```
+
+The website runs at `http://localhost:5173`; the API runs at `http://localhost:3001`.
+
+For deployment, create a `.env` file in the project root:
+
+```env
+VITE_API_URL=https://your-api-domain.example/api
+```
+
+Update `server/data/portfolio.json` to change projects. Contact messages are validated, rate-limited, and stored in its `messages` list. Before public deployment, migrate this file-backed API to MongoDB/PostgreSQL and connect messages to a transactional email provider.
+
+---
+
 <div align="center">
 
 <h1>⚡ Futuristic 3D Portfolio</h1>

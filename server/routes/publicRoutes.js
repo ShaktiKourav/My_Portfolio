@@ -1,0 +1,12 @@
+import { Router } from "express";
+import { createMessage } from "../controllers/messageController.js";
+import { listPublishedProjects } from "../controllers/projectController.js";
+import { getProfile, listPublic } from "../controllers/contentController.js";
+const router = Router();
+router.get("/projects", listPublishedProjects);
+router.get("/profile", getProfile);
+router.get("/skills", listPublic("skills"));
+router.get("/certificates", listPublic("certificates"));
+router.get("/experiences", listPublic("experiences"));
+router.post("/contact", createMessage);
+export default router;

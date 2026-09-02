@@ -1,0 +1,58 @@
+{
+  "portfolio": {
+    "name": "Satyam Kushwaha",
+    "headline": "Computer Science Student · Problem Solver · Full-Stack Developer",
+    "email": "sk7555911@gmail.com",
+    "location": "Patan, Madhya Pradesh, India · Available for remote work",
+    "education": "B.Tech, Computer Science — Rajiv Gandhi Proudyogiki Vishwavidyalaya (2024–2028)",
+    "socials": {
+      "github": "https://github.com/SatyamKushwaha3232",
+      "linkedin": "https://www.linkedin.com/in/satyamkushwaha3224/",
+      "instagram": ""
+    }
+  },
+  "projects": [
+    {
+      "id": "multilingual-rag",
+      "title": "Multilingual RAG System",
+      "category": "AI · Full Stack",
+      "description": "Production-ready document Q&A system with multilingual retrieval, semantic search, and context-aware answers.",
+      "tech": [
+        "Python",
+        "FastAPI",
+        "ChromaDB",
+        "Groq",
+        "Docker"
+      ],
+      "githubUrl": "https://github.com/SatyamKushwaha3232/Multilingual_RAG",
+      "liveUrl": "https://huggingface.co/spaces/Satyamkushwaha3232/multilingual-rag",
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "swapwear",
+      "title": "SwapWear",
+      "category": "Sustainable Commerce",
+      "description": "Sustainable clothing exchange platform focused on giving pre-loved clothing a longer, useful life.",
+      "tech": [
+        "Web Development",
+        "Product Design",
+        "Sustainability"
+      ],
+      "githubUrl": "",
+      "liveUrl": "",
+      "published": true,
+      "featured": true
+    }
+  ],
+  "messages": [
+    {
+      "id": "c99e4fab-9c16-4639-b2e6-60fc354a3774",
+      "name": "Rajveer",
+      "email": "sk7555911@gmail.com",
+      "message": "hjggtii",
+      "createdAt": "2026-08-30T17:32:32.167Z",
+      "status": "new"
+    }
+  ]
+}

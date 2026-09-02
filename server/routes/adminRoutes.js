@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { create, listAdmin, remove, update, updateProfile } from "../controllers/contentController.js";
+import { requireAdmin } from "../middleware/auth.js";
+import { listMessages, updateMessage } from "../controllers/messageController.js";
+const router = Router();
+router.use(requireAdmin);
+router.patch("/profile", updateProfile);
+router.get("/messages", listMessages);
+router.patch("/messages/:id", updateMessage);
+["projects", "skills", "certificates", "experiences"].forEach((kind) => { router.get(`/${kind}`, listAdmin(kind)); router.post(`/${kind}`, create(kind)); router.patch(`/${kind}/:id`, update(kind)); router.delete(`/${kind}/:id`, remove(kind)); });
+export default router;

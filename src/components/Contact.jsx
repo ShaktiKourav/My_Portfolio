@@ -1,17 +1,31 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaInstagram,
-  FaPaperPlane,
-} from "react-icons/fa";
+import { FaGithub, FaPaperPlane } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
+import { sendMessage } from "../services/api";
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setStatus("");
+    setIsSending(true);
+    try {
+      const result = await sendMessage(form);
+      setStatus(result.message);
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      setStatus(error.message.includes("Failed to fetch") ? "The contact service is unavailable. Please email me directly." : error.message);
+    } finally {
+      setIsSending(false);
+    }
+  }
+
   const socials = [
-    { icon: <FaGithub />, color: "#ffffff", href: "#" },
-    { icon: <FaLinkedin />, color: "#0A66C2", href: "#" },
-    { icon: <FaInstagram />, color: "#E4405F", href: "#" },
+    { icon: <FaGithub />, color: "#ffffff", href: "https://github.com/SatyamKushwaha3232" },
     { icon: <MdEmail />, color: "#EA4335", href: "mailto:sk7555911@gmail.com" },
   ];
 
@@ -75,6 +89,8 @@ export default function Contact() {
               <a
                 key={index}
                 href={social.href}
+                target={social.href.startsWith("http") ? "_blank" : undefined}
+                rel={social.href.startsWith("http") ? "noreferrer" : undefined}
                 className="group relative w-16 h-16 rounded-2xl border border-green-400/25 bg-white/[0.045] backdrop-blur-2xl flex items-center justify-center text-2xl hover:-translate-y-2 hover:scale-105 hover:border-green-400/70 transition duration-300 overflow-hidden"
               >
                 <div
@@ -97,6 +113,7 @@ export default function Contact() {
 
         {/* RIGHT FORM */}
         <motion.form
+          onSubmit={handleSubmit}
           initial={{ opacity: 0, x: 70 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
@@ -113,24 +130,39 @@ export default function Contact() {
           <div className="relative space-y-6">
             <input
               type="text"
+              name="name"
+              value={form.name}
+              onChange={(event) => setForm({ ...form, name: event.target.value })}
+              required
+              maxLength="100"
               placeholder="Your Name"
               className="w-full p-5 rounded-2xl bg-black/35 border border-green-400/25 outline-none focus:border-green-400 focus:shadow-[0_0_22px_#22ff8844] text-white placeholder:text-gray-500 transition duration-300"
             />
 
             <input
               type="email"
+              name="email"
+              value={form.email}
+              onChange={(event) => setForm({ ...form, email: event.target.value })}
+              required
               placeholder="Your Email"
               className="w-full p-5 rounded-2xl bg-black/35 border border-green-400/25 outline-none focus:border-green-400 focus:shadow-[0_0_22px_#22ff8844] text-white placeholder:text-gray-500 transition duration-300"
             />
 
             <textarea
+              name="message"
+              value={form.message}
+              onChange={(event) => setForm({ ...form, message: event.target.value })}
+              required
+              maxLength="5000"
               rows="6"
               placeholder="Your Message"
               className="w-full p-5 rounded-2xl bg-black/35 border border-green-400/25 outline-none focus:border-green-400 focus:shadow-[0_0_22px_#22ff8844] text-white placeholder:text-gray-500 resize-none transition duration-300"
             ></textarea>
 
-            <button className="w-full py-5 rounded-2xl bg-green-400 text-black font-black flex items-center justify-center gap-3 hover:shadow-[0_0_40px_#22ff88] hover:scale-[1.02] active:scale-95 transition duration-300">
-              Send Message <FaPaperPlane />
+            {status && <p role="status" className={status.startsWith("Thanks") ? "text-green-300" : "text-red-300"}>{status}</p>}
+            <button disabled={isSending} className="w-full py-5 rounded-2xl bg-green-400 text-black font-black flex items-center justify-center gap-3 hover:shadow-[0_0_40px_#22ff88] hover:scale-[1.02] active:scale-95 transition duration-300 disabled:cursor-not-allowed disabled:opacity-60">
+              {isSending ? "Sending…" : <>Send Message <FaPaperPlane /></>}
             </button>
           </div>
         </motion.form>
