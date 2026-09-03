@@ -16,5 +16,12 @@ app.use("/api/auth", rateLimit({ windowMs: 15 * 60_000, limit: 10, standardHeade
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/uploads", uploadRoutes);
-app.use((_request, response) => response.status(404).json({ message: "Route not found." })); app.use((error, _request, response) => { console.error(error); response.status(500).json({ message: "Something went wrong. Please try again." }); });
+app.use((_request, response) => response.status(404).json({ message: "Route not found." }));
+app.use((error, _request, response, _next) => {
+  void _next;
+  console.error(error);
+  if (error.code === "LIMIT_FILE_SIZE") return response.status(413).json({ message: "File is too large. Maximum upload size is 8 MB." });
+  if (error.message?.includes("Unsupported file")) return response.status(415).json({ message: error.message });
+  return response.status(500).json({ message: error.message || "Something went wrong. Please try again." });
+});
 export default app;

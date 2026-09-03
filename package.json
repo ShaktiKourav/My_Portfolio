@@ -13,16 +13,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.6.1",
     "@tailwindcss/vite": "^4.2.4",
     "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.11.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.0",
-    "framer-motion": "^12.38.0",
     "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^1.14.0",
@@ -32,9 +28,7 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-icons": "^5.6.0",
-    "react-type-animation": "^3.2.0",
-    "tailwindcss": "^4.2.4",
-    "three": "^0.184.0"
+    "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
