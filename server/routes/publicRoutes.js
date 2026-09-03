@@ -8,5 +8,6 @@ router.get("/profile", getProfile);
 router.get("/skills", listPublic("skills"));
 router.get("/certificates", listPublic("certificates"));
 router.get("/experiences", listPublic("experiences"));
+router.get("/platforms", listPublic("platforms"));
 router.post("/contact", createMessage);
 export default router;

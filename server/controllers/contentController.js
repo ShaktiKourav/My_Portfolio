@@ -3,10 +3,11 @@ import Experience from "../models/Experience.js";
 import Profile from "../models/Profile.js";
 import Project from "../models/Project.js";
 import Skill from "../models/Skill.js";
+import Platform from "../models/Platform.js";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 
-const models = { projects: Project, skills: Skill, certificates: Certificate, experiences: Experience };
-const sort = { projects: { order: 1, createdAt: -1 }, skills: { order: 1, createdAt: -1 }, certificates: { order: 1, createdAt: -1 }, experiences: { order: 1, startDate: -1 } };
+const models = { projects: Project, skills: Skill, certificates: Certificate, experiences: Experience, platforms: Platform };
+const sort = { projects: { order: 1, createdAt: -1 }, skills: { order: 1, createdAt: -1 }, certificates: { order: 1, createdAt: -1 }, experiences: { order: 1, startDate: -1 }, platforms: { order: 1, createdAt: -1 } };
 const formattedProject = (document) => { const { technologies, ...project } = document; return { ...project, tech: technologies }; };
 
 export const getProfile = asyncHandler(async (_request, response) => response.json((await Profile.findOne().lean()) || {}));
