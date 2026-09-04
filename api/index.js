@@ -16,6 +16,8 @@ async function ensureDatabaseConnection() {
 export default async function handler(request, response) {
   try {
     await ensureDatabaseConnection();
+    const path = request.query?.path;
+    if (path) request.url = `/api/${Array.isArray(path) ? path.join("/") : path}`;
     return app(request, response);
   } catch (error) {
     console.error("Vercel API startup failed:", error);
