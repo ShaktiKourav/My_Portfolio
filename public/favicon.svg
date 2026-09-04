@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs><linearGradient id="orange" x1="8" y1="4" x2="57" y2="62" gradientUnits="userSpaceOnUse"><stop stop-color="#ff9b65"/><stop offset=".5" stop-color="#ff641d"/><stop offset="1" stop-color="#d9440d"/></linearGradient></defs>
-  <rect width="64" height="64" rx="16" fill="#080d12"/>
-  <path d="M49 14C40 8 23 10 16 19c-9 12 5 17 17 20 10 3 14 5 10 9-4 4-18 5-27-1" fill="none" stroke="url(#orange)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
-  <path d="M48 14l-6 6M16 47l-5 3" fill="none" stroke="#ffb18c" stroke-linecap="round" stroke-width="4"/>
+  <defs>
+    <radialGradient id="orange" cx="32%" cy="24%" r="78%"><stop stop-color="#ffb18c"/><stop offset=".48" stop-color="#ff7837"/><stop offset="1" stop-color="#dd4810"/></radialGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#orange)"/>
+  <text x="32" y="44" fill="#130804" font-family="Brush Script MT, Segoe Script, cursive" font-size="49" font-style="italic" font-weight="900" text-anchor="middle" transform="rotate(-10 32 32)">S</text>
 </svg>
