@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: satyam-portfolio-api
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm run api
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: CLIENT_URL
+        sync: false

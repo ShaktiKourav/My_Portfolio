@@ -1,6 +1,6 @@
 ## Run locally
 
-The portfolio now includes a lightweight Node API. It serves project content and stores contact submissions in `server/data/portfolio.json`.
+This portfolio uses React/Vite on the frontend and an Express + MongoDB Atlas API. Images and PDFs are stored in MongoDB GridFS.
 
 ```bash
 npm run api
@@ -12,15 +12,39 @@ In another terminal:
 npm run dev
 ```
 
-The website runs at `http://localhost:5173`; the API runs at `http://localhost:3001`.
+The website runs at `http://localhost:5173`; the API runs at `http://localhost:5000`.
 
-For deployment, create a `.env` file in the project root:
+## Deploy: Render API + Vercel frontend
+
+1. Push the latest code to GitHub.
+2. In [Render](https://render.com), create a **Web Service** from this repository.
+   - Build command: `npm install`
+   - Start command: `npm run api`
+   - Add these environment variables (do not add them to GitHub):
 
 ```env
-VITE_API_URL=https://your-api-domain.example/api
+MONGODB_URI=your-mongodb-atlas-connection-string
+JWT_SECRET=a-long-random-secret
+JWT_EXPIRES_IN=7d
+ADMIN_EMAIL=your-admin-email
+ADMIN_PASSWORD=your-admin-password
+CLIENT_URL=https://your-vercel-domain.vercel.app
 ```
 
-Update `server/data/portfolio.json` to change projects. Contact messages are validated, rate-limited, and stored in its `messages` list. Before public deployment, migrate this file-backed API to MongoDB/PostgreSQL and connect messages to a transactional email provider.
+3. Copy the deployed Render URL, for example `https://satyam-portfolio-api.onrender.com`.
+4. In [Vercel](https://vercel.com), import the same GitHub repository as a **Vite** project.
+   - Build command: `npm run build`
+   - Output directory: `dist`
+   - Add this environment variable before deploying:
+
+```env
+VITE_API_URL=https://satyam-portfolio-api.onrender.com/api
+```
+
+5. After Vercel creates your website URL, update Render's `CLIENT_URL` with that exact URL and redeploy Render.
+6. In MongoDB Atlas, allow network access for the Render service. For a quick first deployment, Atlas Network Access can temporarily use `0.0.0.0/0`; restrict it later where possible.
+
+Your public site is the Vercel URL and the protected content dashboard is `https://your-vercel-domain.vercel.app/admin`.
 
 ---
 
