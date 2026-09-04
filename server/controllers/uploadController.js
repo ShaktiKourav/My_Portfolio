@@ -5,7 +5,7 @@ import { getPortfolioFilesBucket } from "../config/gridfs.js";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 
 export const uploadFile = asyncHandler(async (request, response) => {
-  if (!request.file) return response.status(400).json({ message: "Upload a JPG, PNG, WEBP, or PDF file up to 8 MB." });
+  if (!request.file) return response.status(400).json({ message: "Upload a JPG, PNG, WEBP, or PDF file up to 4 MB." });
   const resourceType = request.file.mimetype === "application/pdf" ? "raw" : "image";
   try {
     const safeName = request.file.originalname.replace(/[^a-zA-Z0-9._-]/g, "_");
@@ -15,8 +15,7 @@ export const uploadFile = asyncHandler(async (request, response) => {
       metadata: { originalName: request.file.originalname, uploadedBy: "admin" },
     });
     await pipeline(Readable.from([request.file.buffer]), uploadStream);
-    const origin = `${request.protocol}://${request.get("host")}`;
-    response.status(201).json({ url: `${origin}/api/uploads/${uploadStream.id}`, publicId: String(uploadStream.id), resourceType });
+    response.status(201).json({ url: `/api/uploads/${uploadStream.id}`, publicId: String(uploadStream.id), resourceType });
   } catch (error) {
     console.error("MongoDB file upload failed:", error.message);
     response.status(502).json({ message: `MongoDB file upload failed: ${error.message}` });
