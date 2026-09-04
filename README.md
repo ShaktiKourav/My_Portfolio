@@ -14,13 +14,16 @@ npm run dev
 
 The website runs at `http://localhost:5173`; the API runs at `http://localhost:5000`.
 
-## Deploy: Render API + Vercel frontend
+## Deploy: Vercel frontend + API (no separate backend host)
+
+The project includes a Vercel Serverless Function that runs the Express API at `/api/*`. Your React site, protected admin dashboard, GridFS uploads, and MongoDB-backed data all deploy together in one Vercel project.
 
 1. Push the latest code to GitHub.
-2. In [Render](https://render.com), create a **Web Service** from this repository.
-   - Build command: `npm install`
-   - Start command: `npm run api`
-   - Add these environment variables (do not add them to GitHub):
+2. In [Vercel](https://vercel.com), select **Add New → Project** and import this GitHub repository.
+3. Keep the detected Vite settings:
+   - Build command: `npm run build`
+   - Output directory: `dist`
+4. Add these Vercel environment variables for **Production, Preview, and Development**. Do not add these to GitHub:
 
 ```env
 MONGODB_URI=your-mongodb-atlas-connection-string
@@ -28,23 +31,15 @@ JWT_SECRET=a-long-random-secret
 JWT_EXPIRES_IN=7d
 ADMIN_EMAIL=your-admin-email
 ADMIN_PASSWORD=your-admin-password
-CLIENT_URL=https://your-vercel-domain.vercel.app
+CLIENT_URL=https://your-project.vercel.app
 ```
 
-3. Copy the deployed Render URL, for example `https://satyam-portfolio-api.onrender.com`.
-4. In [Vercel](https://vercel.com), import the same GitHub repository as a **Vite** project.
-   - Build command: `npm run build`
-   - Output directory: `dist`
-   - Add this environment variable before deploying:
+5. Deploy. After Vercel provides the final URL, set `CLIENT_URL` to that exact URL and redeploy once.
+6. In MongoDB Atlas Network Access, allow `0.0.0.0/0` for Vercel's serverless network. Restrict it later where possible.
 
-```env
-VITE_API_URL=https://satyam-portfolio-api.onrender.com/api
-```
+Your public site is the Vercel URL, the protected content dashboard is `https://your-project.vercel.app/admin`, and the API health check is `https://your-project.vercel.app/api/health`.
 
-5. After Vercel creates your website URL, update Render's `CLIENT_URL` with that exact URL and redeploy Render.
-6. In MongoDB Atlas, allow network access for the Render service. For a quick first deployment, Atlas Network Access can temporarily use `0.0.0.0/0`; restrict it later where possible.
-
-Your public site is the Vercel URL and the protected content dashboard is `https://your-vercel-domain.vercel.app/admin`.
+Vercel Functions accept a maximum request payload of 4.5 MB, so the portfolio intentionally limits each image or PDF upload to 4 MB.
 
 ---
 
