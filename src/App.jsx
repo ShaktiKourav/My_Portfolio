@@ -1,4 +1,4 @@
-import ProfessionalPortfolio from "./components/ProfessionalPortfolio";
+
 import "./components/SkyTheme.css";
 import "./components/ShaktiUI.css";
 import ShaktiAdvancedPortfolio from "./components/ShaktiAdvancedPortfolio";
