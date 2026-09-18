@@ -625,8 +625,13 @@ export default function ShaktiAdvancedPortfolio() {
 
       <main>
         <section id="home" className="sa-hero">
+          <div className="sa-hero-index" aria-hidden="true">
+            <span>01</span>
+            <i />
+            <small>PORTFOLIO / {new Date().getFullYear()}</small>
+          </div>
           <div className="sa-hero-copy">
-            <p className="sa-kicker">HELLO, I’M <span>👋</span></p>
+            <p className="sa-kicker"><b>●</b> AVAILABLE FOR SELECTED WORK</p>
 
             <h1>
               {firstName} {restName ? <em>{restName}</em> : null}
@@ -676,6 +681,13 @@ export default function ShaktiAdvancedPortfolio() {
           </div>
 
           <TechVisual profile={profile} skills={skills} />
+
+          <div className="sa-hero-stats" aria-label="Published portfolio summary">
+            <div><strong>{String(projects.length).padStart(2, "0")}</strong><span>PROJECTS</span></div>
+            <div><strong>{String(skills.length).padStart(2, "0")}</strong><span>TOOLS</span></div>
+            <div><strong>{String(certificates.length).padStart(2, "0")}</strong><span>CREDENTIALS</span></div>
+            <button onClick={() => go("about")}>SCROLL TO EXPLORE <ChevronRight /></button>
+          </div>
         </section>
 
         <section id="about" className="sa-section">
@@ -734,16 +746,19 @@ export default function ShaktiAdvancedPortfolio() {
             <div className="sa-skill-product-grid">
               {skills.map((skill, index) => (
                 <article className="sa-skill-product" key={skill._id || skill.id || `${skill.name}-${index}`}>
-                  <div className="sa-card-topline">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div className="sa-skill-visual">
                     <Code2 />
+                    <span className="sa-product-badge">{skill.category}</span>
+                    <span className="sa-product-index">{String(index + 1).padStart(2, "0")}</span>
                   </div>
-                  <h3>{skill.name}</h3>
-                  <p>{skill.category}</p>
-                  <div className="sa-skill-meter">
-                    <i style={{ width: `${skill.proficiency}%` }} />
+                  <div className="sa-skill-body">
+                    <p className="sa-product-eyebrow">{skill.category}</p>
+                    <h3>{skill.name}</h3>
+                    <div className="sa-skill-meter">
+                      <i style={{ width: `${skill.proficiency}%` }} />
+                    </div>
+                    <small>{skill.proficiency}% PROFICIENCY</small>
                   </div>
-                  <small>{skill.proficiency}%</small>
                 </article>
               ))}
             </div>
@@ -926,8 +941,12 @@ export default function ShaktiAdvancedPortfolio() {
                       rel={platform.url ? "noreferrer" : undefined}
                       key={platform._id || platform.id || `${platform.name}-${index}`}
                     >
-                      <Code2 />
+                      <div className="sa-platform-visual">
+                        <Code2 />
+                        <span>{String(index + 1).padStart(2, "0")}</span>
+                      </div>
                       <div>
+                        <small>ONLINE PROFILE</small>
                         <b>{platform.name}</b>
                         <span>{platform.description || "Profile"}</span>
                       </div>
