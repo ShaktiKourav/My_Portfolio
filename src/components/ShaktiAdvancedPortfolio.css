@@ -267,6 +267,7 @@ a{text-decoration:none;color:inherit}
 .sa-skill-visual{height:125px;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 30% 20%,#8c173e,#390714 72%);border-bottom:1px solid rgba(255,128,155,.1)}
 .sa-skill-visual::before,.sa-skill-visual::after{content:"";position:absolute;border:1px solid rgba(255,148,174,.14);border-radius:50%}.sa-skill-visual::before{width:145px;height:145px;right:-46px;top:-72px}.sa-skill-visual::after{width:75px;height:75px;left:16px;bottom:-43px}
 .sa-skill-visual>svg{width:34px;height:34px;color:#ff7799;filter:drop-shadow(0 0 17px rgba(255,90,133,.42))}
+.sa-skill-visual>img{width:48px;height:48px;position:relative;z-index:1;object-fit:contain;filter:drop-shadow(0 0 15px rgba(56,189,248,.34))}
 .sa-skill-visual .sa-product-badge{z-index:1}.sa-skill-visual .sa-product-index{z-index:1}
 .sa-skill-body{padding:17px 18px 18px}.sa-skill-body h3{margin:0;font:600 21px/1.15 "Space Grotesk"}.sa-skill-body>small{display:block;margin-top:8px;color:#b87c8c;font:8px "DM Mono";letter-spacing:.09em}.sa-skill-body .sa-skill-meter{margin-top:17px}
 
@@ -367,6 +368,7 @@ a{text-decoration:none;color:inherit}
 .sa-platform:hover{transform:translateY(-4px);border-color:rgba(255,83,123,.4);box-shadow:0 25px 55px rgba(12,0,6,.32)}
 .sa-platform-visual{align-self:stretch;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 30% 20%,#8c173e,#390714 72%)}
 .sa-platform-visual::after{content:"";position:absolute;width:85px;height:85px;border:1px solid rgba(255,148,174,.17);border-radius:50%;right:-42px;bottom:-42px}.sa-platform-visual svg{width:21px;color:#ff7799;z-index:1}.sa-platform-visual span{position:absolute;left:8px;top:8px;color:#dca7b5;font:8px "DM Mono"}
+.sa-platform-visual img{width:30px;height:30px;position:relative;z-index:1;object-fit:contain;filter:drop-shadow(0 0 12px rgba(56,189,248,.32))}
 .sa-platform div{min-width:0}
 .sa-platform small{display:block;color:#ff668a;font:8px "DM Mono";letter-spacing:.12em}.sa-platform b{display:block;margin-top:5px;font:600 14px "Space Grotesk"}
 .sa-platform div span{display:block;margin-top:4px;color:#9e7180;font-size:9px}

@@ -198,6 +198,7 @@ function normalizeSkill(item) {
     ...item,
     name: firstValue(item, ["name", "title", "skill"], "Technology"),
     category: firstValue(item, ["category", "type", "group"], "Technology"),
+    iconUrl: localMedia(firstValue(item, ["iconUrl", "iconImage", "imageUrl"], "")),
     proficiency: Number.isFinite(proficiency)
       ? Math.max(0, Math.min(100, proficiency))
       : 0,
@@ -255,8 +256,10 @@ function normalizePlatform(item) {
     name: firstValue(item, ["name", "title", "platform"], "Platform"),
     description: firstValue(item, ["description", "summary", "type"], ""),
     url: firstValue(item, ["url", "link", "profileUrl"], ""),
+    iconUrl: localMedia(firstValue(item, ["iconUrl", "iconImage", "imageUrl"], "")),
   };
 }
+
 
 function SectionTitle({ number, eyebrow, title, copy }) {
   return (
@@ -747,7 +750,7 @@ export default function ShaktiAdvancedPortfolio() {
               {skills.map((skill, index) => (
                 <article className="sa-skill-product" key={skill._id || skill.id || `${skill.name}-${index}`}>
                   <div className="sa-skill-visual">
-                    <Code2 />
+                    {skill.iconUrl ? <img src={skill.iconUrl} alt="" /> : <Code2 aria-hidden="true" />}
                     <span className="sa-product-badge">{skill.category}</span>
                     <span className="sa-product-index">{String(index + 1).padStart(2, "0")}</span>
                   </div>
@@ -942,7 +945,7 @@ export default function ShaktiAdvancedPortfolio() {
                       key={platform._id || platform.id || `${platform.name}-${index}`}
                     >
                       <div className="sa-platform-visual">
-                        <Code2 />
+                        {platform.iconUrl ? <img src={platform.iconUrl} alt="" /> : <Code2 aria-hidden="true" />}
                         <span>{String(index + 1).padStart(2, "0")}</span>
                       </div>
                       <div>
