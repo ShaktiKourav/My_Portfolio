@@ -9,7 +9,13 @@ import authRoutes from "./routes/authRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 const app = express();
-app.use(helmet()); app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173" })); app.use(express.json({ limit: "25kb" })); app.use(morgan("dev"));
+app.use(helmet());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
+  })
+);
+app.use(express.json({ limit: "25kb" })); app.use(morgan("dev"));
 app.use("/api/contact", rateLimit({ windowMs: 60_000, limit: 3, standardHeaders: true, legacyHeaders: false }));
 app.get("/api/health", (_request, response) => response.json({ status: "ok" })); app.use("/api", publicRoutes);
 app.use("/api/auth", rateLimit({ windowMs: 15 * 60_000, limit: 10, standardHeaders: true, legacyHeaders: false }));
