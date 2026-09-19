@@ -1,5 +1,5 @@
 {
-  "name": "satyam-portfolio",
+  "name": "shakti-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -20,6 +20,7 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.0",
     "helmet": "^8.3.0",
+    "imagekit": "^6.0.0",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^1.14.0",
     "mongoose": "^9.9.4",

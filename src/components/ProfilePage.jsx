@@ -3,7 +3,7 @@ import { ArrowLeft, Download, Mail, MapPin } from "lucide-react";
 import { FaGithub as Github, FaLinkedin as Linkedin } from "react-icons/fa6";
 import { getExperiences, getProfile, getSkills } from "../services/api";
 
-const fallback = { name: "Satyam Kushwaha", headline: "Computer Science student & full-stack developer", bio: "I create practical web and AI experiences with a focus on thoughtful design and solid engineering fundamentals.", email: "sk7555911@gmail.com", location: "Patan, Madhya Pradesh, India", socials: {} };
+const fallback = { name: "Shakti Kourav", headline: "Computer Science student & full-stack developer", bio: "I create practical web and AI experiences with a focus on thoughtful design and solid engineering fundamentals.", email: "kouravshakti72@gmail.com", location: "Vijay Nagar, Madhya Pradesh, India", socials: {} };
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState(fallback); const [skills, setSkills] = useState([]); const [experience, setExperience] = useState([]);

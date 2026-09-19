@@ -31,11 +31,38 @@ export async function getAdminProfile(token) {
   return data;
 }
 
-export async function uploadAdminFile(file, token) {
+// export async function uploadAdminFile(file, token) {
+//   const body = new FormData();
+//   body.append("file", file);
+//   const response = await fetch(`${API_URL}/uploads`, { method: "POST", headers: { Authorization: `Bearer ${token}` }, body });
+//   const data = await response.json();
+//   if (!response.ok) throw new Error(data.message || "Upload failed.");
+//   return data;
+// }
+
+
+
+
+export async function uploadAdminFile(file, token, folder = "other") {
   const body = new FormData();
+
   body.append("file", file);
-  const response = await fetch(`${API_URL}/uploads`, { method: "POST", headers: { Authorization: `Bearer ${token}` }, body });
+  body.append("folder", folder);
+
+  const response = await fetch(`${API_URL}/uploads`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body,
+  });
+
   const data = await response.json();
-  if (!response.ok) throw new Error(data.message || "Upload failed.");
+
+  if (!response.ok) {
+    throw new Error(data.message || "Upload failed.");
+  }
+
   return data;
 }
+

@@ -702,12 +702,36 @@ export default function ShaktiAdvancedPortfolio() {
           />
 
           <div className="sa-about-grid">
-            <article className="sa-editorial">
+            {/* <article className="sa-editorial">
               <span className="sa-card-label">PROFILE</span>
               <h3>{profile.name || "Profile"}</h3>
               <p>{profile.headline || "Headline will appear from Admin."}</p>
               {profile.location ? <small>{profile.location}</small> : null}
-            </article>
+            </article> */}
+            <article className="sa-editorial">
+  <span className="sa-card-label">PROFILE</span>
+
+  <div className="sa-profile-image">
+    {profile.photoUrl ? (
+      <img
+        src={profile.photoUrl}
+        alt={profile.name || "Profile"}
+      />
+    ) : (
+      <span>{initials(profile.name)}</span>
+    )}
+  </div>
+
+  <h3>{profile.name || "Profile"}</h3>
+
+  <p>
+    {profile.headline || "Headline will appear from Admin."}
+  </p>
+
+  {profile.location ? (
+    <small>{profile.location}</small>
+  ) : null}
+</article>
 
             <div className="sa-info-stack">
               <article>

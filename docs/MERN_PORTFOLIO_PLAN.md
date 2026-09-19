@@ -25,7 +25,7 @@ MongoDB Atlas
 ## Repository layout
 
 ```text
-Satyam-Portfolio/
+Shakti-Portfolio/
   src/                         # React client
     components/                # public UI components
     pages/

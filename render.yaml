@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: satyam-portfolio-api
+    name: shakti-portfolio-api
     runtime: node
     buildCommand: npm install
     startCommand: npm run api
