@@ -1136,7 +1136,8 @@ a {
 /* ---------- Skill icon area ---------- */
 
 .sa-skill-visual {
-  height: 120px;
+  height: 110px;
+  
 
   position: relative;
 
@@ -1178,8 +1179,8 @@ a {
 
   position: absolute;
 
-  width: 85px;
-  height: 85px;
+  width: 80px;
+  height: 80px;
 
   left: 15px;
   bottom: -42px;
@@ -1194,8 +1195,8 @@ a {
 
 .sa-skill-visual > svg,
 .sa-skill-visual > img {
-  width: 62px;
-  height: 62px;
+  width: 50px;
+  height: 50px;
 
   position: relative;
 
@@ -1791,12 +1792,11 @@ a {
 
 .sa-certificate-card {
   overflow: hidden;
-
   border:
     1px solid var(--sa-line);
 
   border-radius: 17px;
-
+  
   background:
     linear-gradient(
       145deg,
@@ -2742,100 +2742,76 @@ a {
   }
 }
 
-/* =========================================================
-   RESPONSIVE - MOBILE
-========================================================= */
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
 
-@media (max-width: 760px) {
-  .sa-nav {
-    width: 100%;
+@media (max-width: 768px) {
 
-    padding: 0 15px;
-  }
-
-  .sa-nav::before {
-    inset: 8px 7px;
-  }
-
-  .sa-command,
-  .sa-resume {
-    display: none;
-  }
-
-  .sa-mobile-nav {
-    display: block;
-
-    width: calc(100% - 28px);
-  }
-
-  .sa-hero,
-  .sa-section,
-  .sa-footer {
-    width: calc(100% - 28px);
-  }
-
-  .sa-hero {
-    min-height: auto;
-
-    padding: 55px 0 135px;
-  }
-
-  .sa-hero-index {
-    display: none;
-  }
-
-  .sa-hero h1 {
-    font-size: 54px;
-  }
-
-  .sa-hero-visual {
-    min-height: 300px;
-  }
-
-  .sa-portrait-shell {
-    width: 270px;
-  }
-
-  .sa-float {
-    display: none;
-  }
-
-  .sa-about-grid,
-  .sa-explore-grid,
-  .sa-contact {
-    grid-template-columns: 1fr;
-  }
-
-  .sa-product-grid,
   .sa-certificate-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .sa-skill-product-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+  .sa-certificate-card {
+    width: 100%;
+    border-radius: 16px;
   }
 
-  .sa-timeline article {
-    grid-template-columns: 1fr;
-
-    gap: 9px;
+  .sa-certificate-preview {
+    aspect-ratio: 16 / 10;
   }
 
-  .sa-footer {
-    grid-template-columns:
-      1fr
-      1fr;
-
-    gap: 13px;
+  .sa-certificate-body {
+    padding: 16px;
   }
 
-  .sa-footer nav {
-    display: none;
+  .sa-certificate-body h3 {
+    font-size: 18px;
+    line-height: 1.25;
   }
 
-  .sa-section {
-    padding: 70px 0;
+  .sa-certificate-body p {
+    font-size: 11px;
+  }
+
+  .sa-certificate-link {
+    font-size: 11px;
+  }
+}
+
+/* =========================
+   SKILLS RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .sa-skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .sa-skill-card {
+    min-width: 0;
+    padding: 14px;
+  }
+
+  .sa-skill-card h3 {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .sa-skill-card p {
+    font-size: 9px;
+  }
+
+  .sa-skill-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sa-skill-progress {
+    margin-top: 10px;
   }
 }
 
@@ -2864,3 +2840,336 @@ a {
     padding: 16px;
   }
 }
+
+@media (max-width: 480px) {
+
+  .sa-skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .sa-skill-card {
+    padding: 12px;
+  }
+
+  .sa-skill-card h3 {
+    font-size: 12px;
+  }
+
+  .sa-skill-card p {
+    font-size: 8px;
+  }
+
+  .sa-skill-icon {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+
+
+
+/* =========================================================
+   FINAL MOBILE RESPONSIVE
+   SKILLS → 2 COLUMNS
+   CERTIFICATES → 2 COLUMNS
+   PLATFORMS → BELOW CERTIFICATES
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =========================================
+     COMMON MOBILE WIDTH
+  ========================================= */
+
+  .sa-section {
+    width: min(100%, calc(100% - 28px));
+    padding: 65px 0;
+  }
+
+  .sa-title {
+    margin-bottom: 28px;
+  }
+
+
+  /* =========================================
+     SKILLS
+     2 CARDS IN ONE ROW
+  ========================================= */
+
+  .sa-skill-product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .sa-skill-product {
+    min-width: 0;
+    border-radius: 13px;
+  }
+
+  .sa-skill-visual {
+    height: 100px;
+  }
+
+  .sa-skill-visual > svg,
+  .sa-skill-visual > img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .sa-skill-body {
+    padding: 12px;
+  }
+
+  .sa-skill-category {
+    font-size: 7px;
+    margin-bottom: 6px;
+  }
+
+  .sa-skill-body h3 {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .sa-skill-proficiency {
+    margin-top: 11px;
+  }
+
+  .sa-skill-proficiency span {
+    font-size: 7px;
+  }
+
+  .sa-skill-proficiency strong {
+    font-size: 9px;
+  }
+
+  .sa-skill-meter {
+    height: 3px;
+    margin-top: 7px;
+  }
+
+
+  /* =========================================
+     EXPLORE SECTION
+     
+     DESKTOP:
+     Certificates | Platforms
+     
+     MOBILE:
+     Certificates
+     ↓
+     Platforms
+  ========================================= */
+
+  .sa-explore-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+
+  /* =========================================
+     CERTIFICATES
+     2 CARDS IN ONE ROW
+  ========================================= */
+
+  .sa-certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .sa-certificate-card {
+    width: 100%;
+    min-width: 0;
+    border-radius: 14px;
+  }
+
+  .sa-certificate-preview {
+    aspect-ratio: 16 / 10;
+  }
+
+  .sa-certificate-preview > span {
+    right: 7px;
+    top: 7px;
+    font-size: 13px;
+  }
+
+  .sa-certificate-body {
+    padding: 12px;
+  }
+
+  .sa-certificate-body small {
+    font-size: 7px;
+  }
+
+  .sa-certificate-body h3 {
+    margin: 6px 0 4px;
+    font-size: 14px;
+    line-height: 1.15;
+  }
+
+  .sa-certificate-body p {
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .sa-certificate-link {
+    margin-top: 9px;
+    font-size: 8px;
+  }
+
+  .sa-certificate-link svg {
+    width: 10px;
+  }
+
+
+  /* =========================================
+     PLATFORMS
+     COMES AFTER CERTIFICATES
+  ========================================= */
+
+  .sa-platform-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sa-platform {
+    width: 100%;
+    grid-template-columns: 58px 1fr auto;
+    gap: 10px;
+    padding: 4px;
+    border-radius: 13px;
+  }
+
+  .sa-platform-visual {
+    min-height: 58px;
+  }
+
+  .sa-platform-visual img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .sa-platform-visual svg {
+    width: 19px;
+  }
+
+  .sa-platform-visual span {
+    left: 6px;
+    top: 6px;
+    font-size: 7px;
+  }
+
+  .sa-platform small {
+    font-size: 7px;
+  }
+
+  .sa-platform b {
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+  .sa-platform div span {
+    margin-top: 3px;
+    font-size: 8px;
+  }
+
+  .sa-platform > svg:last-child {
+    width: 12px;
+    margin-right: 8px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   360px / 375px / 390px
+========================================================= */
+
+@media (max-width: 400px) {
+
+  /* Skills still remain 2 columns */
+  .sa-skill-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .sa-skill-visual {
+    height: 90px;
+  }
+
+  .sa-skill-visual > svg,
+  .sa-skill-visual > img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .sa-skill-body {
+    padding: 10px;
+  }
+
+  .sa-skill-body h3 {
+    font-size: 12px;
+  }
+
+  .sa-skill-category {
+    font-size: 6px;
+  }
+
+  .sa-skill-proficiency span {
+    font-size: 6px;
+  }
+
+  .sa-skill-proficiency strong {
+    font-size: 8px;
+  }
+
+
+  /* Certificates remain 2 columns */
+  .sa-certificate-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .sa-certificate-card {
+    border-radius: 12px;
+  }
+
+  .sa-certificate-body {
+    padding: 10px;
+  }
+
+  .sa-certificate-body h3 {
+    font-size: 12px;
+  }
+
+  .sa-certificate-body p {
+    font-size: 7px;
+  }
+
+  .sa-certificate-body small {
+    font-size: 6px;
+  }
+
+  .sa-certificate-link {
+    font-size: 7px;
+  }
+
+
+  /* Platforms stay full width */
+  .sa-platform {
+    grid-template-columns: 52px 1fr auto;
+  }
+
+  .sa-platform-visual {
+    min-height: 52px;
+  }
+
+  .sa-platform b {
+    font-size: 11px;
+  }
+}
+
