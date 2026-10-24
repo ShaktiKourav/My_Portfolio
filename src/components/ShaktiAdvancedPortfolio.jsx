@@ -217,6 +217,18 @@ function normalizeExperience(item) {
     description: firstValue(item, ["description", "summary", "details"], ""),
     startDate: firstValue(item, ["startDate", "from", "date"], ""),
     endDate: firstValue(item, ["endDate", "to"], ""),
+    current: Boolean(item.current),
+    technologies: Array.isArray(item.technologies)
+      ? item.technologies
+      : typeof item.technologies === "string"
+        ? item.technologies.split(",").map((tech) => tech.trim()).filter(Boolean)
+        : [],
+    certificateImageUrl: localMedia(
+      firstValue(item, ["certificateImageUrl", "imageUrl", "certificateImage"], "")
+    ),
+    certificatePdfUrl: localMedia(
+      firstValue(item, ["certificatePdfUrl", "fileUrl", "certificateUrl", "documentUrl"], "")
+    ),
   };
 }
 
@@ -880,7 +892,7 @@ export default function ShaktiAdvancedPortfolio() {
             copy="Experience and milestones come directly from published Admin entries."
           />
 
-          {experience.length ? (
+          {/* {experience.length ? (
             <div className="sa-timeline">
               {experience.map((item, index) => (
                 <article key={item._id || item.id || `${item.role}-${index}`}>
@@ -898,7 +910,138 @@ export default function ShaktiAdvancedPortfolio() {
             </div>
           ) : (
             <div className="sa-empty">No published experience entries are available.</div>
-          )}
+          )} */}
+          {experience.length ? (
+  <div className="sa-experience-grid">
+    {experience.map((item, index) => {
+      const certificateImage =
+        item.certificateImageUrl || "";
+
+      const certificatePdf =
+        item.certificatePdfUrl || "";
+
+      const technologies = Array.isArray(item.technologies)
+        ? item.technologies
+        : typeof item.technologies === "string"
+          ? item.technologies.split(",").map((tech) => tech.trim()).filter(Boolean)
+          : [];
+
+      const startYear = item.startDate
+        ? new Date(item.startDate).getFullYear()
+        : "";
+
+      const endYear = item.current
+        ? "Present"
+        : item.endDate
+          ? new Date(item.endDate).getFullYear()
+          : "";
+
+      return (
+        <article
+          className="sa-experience-card"
+          key={item._id || item.id || `${item.role}-${index}`}
+        >
+          {/* Certificate image */}
+          <div className="sa-experience-preview">
+            {certificateImage ? (
+              <a
+                href={certificateImage}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`View ${item.role} certificate`}
+              >
+                <img
+                  src={certificateImage}
+                  alt={`${item.role} certificate`}
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <div className="sa-experience-placeholder">
+                <Award aria-hidden="true" />
+                <span>EXPERIENCE</span>
+              </div>
+            )}
+
+            <span className="sa-experience-number">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
+
+          {/* Experience details */}
+          <div className="sa-experience-content">
+            <div className="sa-experience-heading">
+              <span className="sa-eyebrow">
+                INTERNSHIP / EXPERIENCE
+              </span>
+
+              {(startYear || endYear) && (
+                <span className="sa-experience-duration">
+                  {startYear || "—"} — {endYear || "—"}
+                </span>
+              )}
+            </div>
+
+            <h3>{item.role}</h3>
+
+            <b className="sa-experience-organisation">
+              {item.organisation}
+            </b>
+
+            {item.description && (
+              <p className="sa-experience-description">
+                {item.description}
+              </p>
+            )}
+
+            {technologies.length > 0 && (
+              <div className="sa-experience-tech">
+                {technologies.map((tech, techIndex) => (
+                  <span key={`${tech}-${techIndex}`}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Certificate buttons */}
+            {(certificateImage || certificatePdf) && (
+              <div className="sa-experience-actions">
+                {certificateImage && (
+                  <a
+                    className="sa-experience-details"
+                    href={certificateImage}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View Certificate <ArrowUpRight />
+                  </a>
+                )}
+
+                {certificatePdf && (
+                  <a
+                    className="sa-experience-icon-link"
+                    href={certificatePdf}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Open certificate PDF"
+                    title="Open certificate PDF"
+                  >
+                    <ExternalLink />
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+) : (
+  <div className="sa-empty">
+    No published experience entries are available.
+  </div>
+)}
         </section>
 
         <section id="explore" className="sa-section">
